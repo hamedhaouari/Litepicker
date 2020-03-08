@@ -23,6 +23,14 @@ export class Litepicker extends Calendar {
       );
     }
 
+    if (this.options.openDays.length) {
+      this.options.openDays = DateTime.convertArray(
+        this.options.openDays,
+        this.options.lockDaysFormat,
+      );
+    }
+
+
     if (this.options.bookedDays.length) {
       this.options.bookedDays = DateTime.convertArray(
         this.options.bookedDays,
@@ -256,7 +264,12 @@ export class Litepicker extends Calendar {
 
   private shouldCheckLockDays() {
     return this.options.disallowLockDaysInRange
-      && this.options.lockDays.length
+      && (this.options.lockDays.length )
+      && this.datePicked.length === 2;
+  }
+  private shouldCheckOpenDays() {
+    return this.options.disallowLockDaysInRange
+      && (this.options.openDays.length )
       && this.datePicked.length === 2;
   }
 
@@ -334,6 +347,34 @@ export class Litepicker extends Calendar {
         }
       }
 
+      if (this.shouldCheckOpenDays()) {
+        let inclusivity = this.options.lockDaysInclusivity;
+        
+        let day = new  DateTime((this.datePicked[0]).getTime());
+        console.log(this.datePicked[0]+"before");
+        const opened = this.options.openDays
+        .map((n) =>{
+          return  n.getTime();
+        })
+        while(day.isBetween(this.datePicked[0], this.datePicked[1], inclusivity)){
+          if(!opened.includes(day.getTime())){
+             this.datePicked.length = 0;
+
+            if (typeof this.options.onError === 'function') {
+              this.options.onError.call(this, 'INVALID_RANGE');
+            }
+           
+            break;
+          }
+
+          day.setDate(day.getDate() + 1);
+          
+          
+        } 
+        
+        
+      }
+
       if (this.shouldCheckBookedDays()) {
         let inclusivity = this.options.bookedDaysInclusivity;
 
@@ -362,6 +403,8 @@ export class Litepicker extends Calendar {
           }
         }
       }
+
+      
 
       this.render();
 

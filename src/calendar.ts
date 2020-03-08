@@ -35,6 +35,8 @@ export class Calendar {
 
     lockDaysFormat: 'YYYY-MM-DD',
     lockDays: [],
+    openDays: [],
+
     disallowLockDaysInRange: false,
     lockDaysInclusivity: '[]',
 
@@ -322,7 +324,23 @@ export class Calendar {
     day.className = style.dayItem;
     day.innerHTML = String(date.getDate());
     day.dataset.time = String(date.getTime());
-
+    if(this.options.openMode){
+      if (this.options.openDays.length) {
+        const opened = this.options.openDays
+          .filter((d) => {
+            if (d instanceof Array) {
+              return date.isBetween(d[0], d[1], this.options.lockDaysInclusivity);
+            }
+  
+            return d.isSame(date, 'day');
+          }).length;
+  
+        if (! opened) {
+          day.classList.add(style.isLocked);
+        }
+      }
+      
+    }
     if (date.toDateString() === (new Date()).toDateString()) {
       day.classList.add(style.isToday);
     }

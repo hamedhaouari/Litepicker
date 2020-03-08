@@ -18,6 +18,7 @@ declare module './litepicker' {
     setDateRange(date1, date2);
 
     setLockDays(array);
+    setOpenDays(array);
     setBookedDays(array);
 
     gotoDate(date, idx);
@@ -259,6 +260,14 @@ Litepicker.prototype.gotoDate = function (date, idx = 0) {
 
 Litepicker.prototype.setLockDays = function (array) {
   this.options.lockDays = DateTime.convertArray(
+    array,
+    this.options.lockDaysFormat,
+  );
+  this.render();
+};
+
+Litepicker.prototype.setOpenDays = function (array) {
+  this.options.openDays = DateTime.convertArray(
     array,
     this.options.lockDaysFormat,
   );
