@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0">
+  <title>Litepicker - Date range picker - lightweight, no dependencies</title>
+</head>
+
+<body>
+  <input id="datepicker">
+  <script src="https://cdn.jsdelivr.net/npm/litepickeropendays@1.0.1/dist/js/main.js"></script> 
+  <script>
+    let picker = new Litepicker({
+      element: document.getElementById('datepicker'),
+      
+      firstDay:1,
+      format:'DD/MM/YYYY',
+      lang:'en-US',
+      numberOfMonths:2,
+      numberOfColumns:2,
+      minDate:'Wed Mar 11 2020',
+      maxDate:null,
+      minDays:null,
+      maxDays:null,
+      selectForward:false,
+      selectBackward:false,
+      splitView:false,
+      inlineMode:true,
+      singleMode:false,
+      autoApply:true,
+      disallowLockDaysInRange:true,
+      showWeekNumbers:false,
+      showTooltip:true,
+      disableWeekends:false,
+      mobileFriendly:true,
+      lockDaysFormat : 'DD/MM/YYYY',
+      openMode:true,
+      openDays:['14/03/2020' , '15/03/2020','18/03/2020','28/03/2020','27/03/2020','29/03/2020'],
+      //lockDays:['14/03/2020' , '29/03/2020']
+    });
+  </script>
+</body>
+
+</html>
