@@ -370,6 +370,26 @@
             <p>Can contains Date Object or Unix Timestamp (with milliseconds) or String (must be equal to option
               <strong>lockDaysFormat</strong>).</p>
           </div>
+          <div id="option-openMode" style="color: red">openMode</div>
+          <div class="option-type">Boolean</div>
+          <div class="option-default">false</div>
+          <div class="option-description">
+            <p>inable open mode</p>
+            <p>Eg: [ ['2019-01-01', '2019-01-10'], '2019-01-31' ].</p>
+            <p>This example will inable range from 01 Jan 2019 to 10 Jan 2019 and 31 Jan 2019.</p>
+            <p>Can contains Date Object or Unix Timestamp (with milliseconds) or String (must be equal to option
+              <strong>lockDaysFormat</strong>).</p>
+          </div>
+          <div id="option-openDays" style="color: red">openDays</div>
+          <div class="option-type">Array</div>
+          <div class="option-default">[]</div>
+          <div class="option-description">
+            <p>inable days for select. Can contains array with range:</p>
+            <p>Eg: [ ['2019-01-01', '2019-01-10'], '2019-01-31' ].</p>
+            <p>This example will inable range from 01 Jan 2019 to 10 Jan 2019 and 31 Jan 2019.</p>
+            <p>Can contains Date Object or Unix Timestamp (with milliseconds) or String (must be equal to option
+              <strong>lockDaysFormat</strong>).</p>
+          </div>
 
           <div id="option-disallowLockDaysInRange">disallowLockDaysInRange</div>
           <div class="option-type">Boolean</div>
@@ -636,7 +656,12 @@
             <p>Set lock days.</p>
             <p>See options <strong>lockDays</strong> for format information.</p>
           </div>
-
+          <div style="color: red">setOpenDays</div>
+          <div class="option-default">array</div>
+          <div class="option-description">
+            <p>Set open days.</p>
+            <p>See options <strong>openDays</strong> for format information.</p>
+          </div>
           <div>setBookedDays</div>
           <div class="option-default">array</div>
           <div class="option-description">
